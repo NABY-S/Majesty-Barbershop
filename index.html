@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Majesty Barbershop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Majesty Barbershop, Amanfrom Road, Ngleshi Amanfro. Fades, hair designs and beard shaping for kids and adults.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@500;600&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+/* Layout concept: black and gold barbershop page after the supplied idea (centered section heads, full-bleed hero
+   with the shop video fading in from the right), colours taken from the gold logo. One bold move: the hero video. */
+:root {
+  --ink: #090a11;
+  --panel: #10121b;
+  --panel-2: #171a26;
+  --band: #0c0d15;
+  --gold: #d9ac3f;
+  --gold-hi: #f3dc86;
+  --gold-lo: #9a721f;
+  --line: rgba(217, 172, 63, 0.24);
+  --text: #f2eee3;
+  --muted: #a9a69b;
+  --open: #56c783;
+  --shut: #e5746a;
+  --grad-gold: linear-gradient(135deg, #f6e394 0%, #d9ac3f 48%, #a67c1d 100%);
+  --f-display: "Bebas Neue", "Oswald", Impact, "Arial Narrow", sans-serif;
+  --f-mark: "Cinzel", "Trajan Pro", Georgia, serif;
+  --f-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font: 400 16px/1.6 var(--f-body);
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  background: var(--ink); z-index: 60;
+}
+[hidden] { display: none !important; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, p, ul, dl, dd, figure { margin: 0; padding: 0; }
+ul { list-style: none; }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+
+.wrap {
+  width: 100%; max-width: 1200px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.gold-text {
+  color: var(--gold);
+  background: var(--grad-gold);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px 24px; border-radius: 6px; border: 1px solid transparent;
+  font: 700 14px/1 var(--f-body); letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
+  cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn--gold { background: var(--grad-gold); color: #1a1405; box-shadow: 0 6px 22px rgba(217, 172, 63, 0.22); }
+.btn--gold:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(217, 172, 63, 0.34); }
+.btn--ghost { border-color: rgba(242, 238, 227, 0.45); color: var(--text); background: rgba(9, 10, 17, 0.35); }
+.btn--ghost:hover { border-color: var(--gold-hi); color: var(--gold-hi); }
+.btn--dark { background: var(--ink); color: var(--gold-hi); border-color: rgba(9, 10, 17, 0.9); }
+.btn--dark:hover { transform: translateY(-2px); background: #000; }
+.btn--outline-dark { border-color: rgba(9, 10, 17, 0.7); color: #1a1405; }
+.btn--outline-dark:hover { background: rgba(9, 10, 17, 0.1); }
+
+/* header */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: rgba(9, 10, 17, 0.9);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 78px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; }
+.brand img { height: 56px; width: auto; flex: none; }
+.brand-name { display: flex; flex-direction: column; gap: 5px; line-height: 1; }
+.brand-name b { font: 600 21px/1 var(--f-mark); letter-spacing: 0.16em; }
+.brand-name small { font: 600 10px/1 var(--f-mark); letter-spacing: 0.42em; color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 6px; }
+.nav-links a {
+  display: block; padding: 9px 16px; border-radius: 999px; text-decoration: none;
+  font: 600 13px/1 var(--f-body); letter-spacing: 0.12em; text-transform: uppercase; color: #d9d5c9;
+  transition: color .15s ease, background .15s ease;
+}
+.nav-links a:hover { color: var(--gold-hi); }
+.nav-links a.is-active { background: var(--grad-gold); color: #1a1405; }
+.nav-cta { padding: 12px 20px; font-size: 13px; }
+.menu-btn {
+  display: none; width: 46px; height: 46px; border-radius: 8px; border: 1px solid var(--line);
+  background: transparent; color: var(--gold-hi); cursor: pointer; align-items: center; justify-content: center;
+}
+.menu-btn span, .menu-btn span::before, .menu-btn span::after {
+  display: block; width: 20px; height: 2px; background: currentColor; border-radius: 2px; position: relative;
+  transition: transform .2s ease, background .2s ease;
+}
+.menu-btn span::before, .menu-btn span::after { content: ""; position: absolute; left: 0; }
+.menu-btn span::before { top: -6px; }
+.menu-btn span::after { top: 6px; }
+.site-header.nav-open .menu-btn span { background: transparent; }
+.site-header.nav-open .menu-btn span::before { top: 0; transform: rotate(45deg); }
+.site-header.nav-open .menu-btn span::after { top: 0; transform: rotate(-45deg); }
+
+/* hero */
+.hero { position: relative; overflow: hidden; background: var(--ink); min-height: 680px; display: flex; align-items: center; }
+.hero-media {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 68%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.5) 20%, #000 46%);
+  mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.5) 20%, #000 46%);
+}
+.hero-media video, .hero-media img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%;
+  filter: brightness(0.6) contrast(1.1) saturate(0.8) sepia(0.2);
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(9, 10, 17, 0.6) 0, rgba(9, 10, 17, 0) 22%, rgba(9, 10, 17, 0) 62%, var(--ink) 100%),
+    radial-gradient(ellipse 60% 70% at 78% 45%, rgba(217, 172, 63, 0.12), transparent 70%);
+}
+.hero-inner { position: relative; z-index: 2; padding-block: 72px 104px; }
+.hero-copy { max-width: 580px; }
+.status {
+  display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(16, 18, 27, 0.75);
+  font: 600 14px/1 var(--f-body); color: #e8e4d8;
+}
+.status i { width: 9px; height: 9px; border-radius: 50%; background: var(--gold); flex: none; }
+.status[data-state="open"] i { background: var(--open); box-shadow: 0 0 0 4px rgba(86, 199, 131, 0.2); }
+.status[data-state="closed"] i { background: var(--shut); box-shadow: 0 0 0 4px rgba(229, 116, 106, 0.18); }
+h1 {
+  font: 400 clamp(60px, 10vw, 118px)/0.92 var(--f-display); letter-spacing: 0.01em;
+  margin: 22px 0 22px; text-wrap: balance;
+}
+h1 span { display: block; }
+.lede {
+  max-width: 44ch; font-size: 18px; line-height: 1.55; color: #d6d2c6;
+  border-left: 2px solid var(--gold); padding-left: 16px;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+/* sections */
+.section { padding-block: 92px; }
+.section--band { background: var(--band); border-block: 1px solid rgba(217, 172, 63, 0.1); }
+.section-head { text-align: center; margin-bottom: 44px; }
+h2 { font: 400 clamp(40px, 5.4vw, 60px)/1 var(--f-display); letter-spacing: 0.02em; text-wrap: balance; }
+.section-head p { margin: 12px auto 0; max-width: 52ch; color: var(--muted); }
+
+/* services */
+.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.service { position: relative; overflow: hidden; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); aspect-ratio: 4 / 4.6; }
+.service img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; transform: scale(1.14); transform-origin: 50% 58%; transition: transform .5s ease; filter: saturate(0.92); }
+.service:hover img { transform: scale(1.2); }
+.service figcaption {
+  position: absolute; inset: auto 0 0 0; padding: 70px 20px 20px;
+  background: linear-gradient(180deg, transparent, rgba(9, 10, 17, 0.92) 70%);
+}
+.service h3 { font: 400 30px/1 var(--f-display); letter-spacing: 0.04em; }
+.service p { margin-top: 6px; font-size: 15px; color: #c7c3b7; }
+.service::after { content: ""; position: absolute; inset: auto 0 0 0; height: 3px; background: var(--grad-gold); transform: scaleX(0.18); transform-origin: left; transition: transform .4s ease; }
+.service:hover::after { transform: scaleX(1); }
+
+.starting {
+  margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px;
+  padding: 22px 26px; background: var(--panel-2); border: 1px solid rgba(217, 172, 63, 0.14); border-left: 3px solid var(--gold); border-radius: 8px;
+}
+.starting h3 { font: 400 32px/1 var(--f-display); letter-spacing: 0.03em; }
+.starting p { margin-top: 6px; color: var(--muted); font-size: 15px; }
+.btn--light { background: #f5f1e6; color: #14110a; }
+.btn--light:hover { transform: translateY(-2px); background: #fff; }
+
+/* prices */
+.price-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+.price-card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 30px; min-width: 0; }
+.price-card h3 { font: 400 36px/1 var(--f-display); letter-spacing: 0.04em; }
+.price-card > p { color: var(--muted); font-size: 15px; margin: 6px 0 18px; }
+.price-row { display: flex; align-items: baseline; gap: 12px; padding: 14px 0; border-top: 1px solid rgba(217, 172, 63, 0.14); }
+.price-row dt { font: 600 17px/1.25 var(--f-body); letter-spacing: 0.02em; min-width: 0; }
+.price-row::before { content: ""; order: 1; flex: 1; border-bottom: 1px dotted rgba(217, 172, 63, 0.38); transform: translateY(-4px); }
+.price-row dt { order: 0; }
+.price-row:first-child { border-top: 0; }
+.price-row dd { white-space: nowrap; }
+.price-row dd { order: 2; display: flex; align-items: baseline; gap: 5px; font-variant-numeric: tabular-nums; }
+.cur { font: 700 15px/1 var(--f-body); color: var(--gold); letter-spacing: 0.04em; }
+.num { font: 400 40px/1 var(--f-display); color: var(--gold-hi); }
+.price-note { text-align: center; color: var(--muted); font-size: 15px; margin-top: 26px; }
+
+/* why */
+.why { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.why li { background: var(--panel); border: 1px solid rgba(217, 172, 63, 0.14); border-radius: 10px; padding: 26px 22px; }
+.why svg { width: 34px; height: 34px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.why h3 { margin-top: 18px; font: 400 26px/1 var(--f-display); letter-spacing: 0.05em; }
+.why p { margin-top: 8px; font-size: 15px; color: var(--muted); }
+
+/* booking */
+.book { background: linear-gradient(120deg, #ecca69 0%, #d4a63e 55%, #c2952f 100%); color: #1a1405; padding-block: 76px; }
+.book-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 52px; align-items: center; }
+.book h2 { font-size: clamp(42px, 5.4vw, 64px); }
+.book-copy > p { margin-top: 12px; max-width: 38ch; font-weight: 500; font-size: 17px; }
+.book-hours { margin-top: 24px; display: grid; gap: 8px; max-width: 340px; font-size: 15px; font-variant-numeric: tabular-nums; }
+.book-hours div { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(26, 20, 5, 0.22); }
+.book-hours b { font-weight: 700; }
+.book-hours span { font-weight: 500; }
+.book-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.book-card { background: var(--ink); color: var(--text); border: 1px solid rgba(9, 10, 17, 0.9); border-radius: 14px; padding: 32px; box-shadow: 0 28px 60px rgba(46, 32, 0, 0.35); }
+.book-card h3 { font: 400 34px/1 var(--f-display); letter-spacing: 0.04em; }
+.book-card .sub { color: var(--muted); font-size: 15px; margin: 6px 0 22px; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 16px; }
+.field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.field--full { grid-column: 1 / -1; }
+.field label { font: 600 13px/1 var(--f-body); letter-spacing: 0.1em; text-transform: uppercase; color: #d9d5c9; }
+.field .req { color: var(--gold-hi); }
+.field .opt { color: var(--muted); text-transform: none; letter-spacing: 0; font-weight: 500; margin-left: 6px; }
+.field input, .field select {
+  width: 100%; min-height: 52px; padding: 12px 14px; border-radius: 8px; border: 1px solid rgba(217, 172, 63, 0.3);
+  background: var(--panel-2); color: var(--text); font: 500 16px/1.2 var(--f-body); appearance: none; -webkit-appearance: none;
+}
+.field select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 38px;
+}
+.field input[type="date"] { min-height: 52px; }
+.field input::placeholder { color: #78756b; }
+.field input:focus, .field select:focus { outline: none; border-color: var(--gold-hi); box-shadow: 0 0 0 3px rgba(217, 172, 63, 0.25); }
+.field select:disabled { opacity: 0.6; }
+.field.has-error input, .field.has-error select { border-color: var(--shut); }
+.err { color: #ff9d93; font-size: 14px; font-weight: 500; line-height: 1.35; }
+.book-card form > .btn { width: 100%; margin-top: 24px; padding: 17px 24px; }
+.form-note { margin-top: 14px; font-size: 13px; color: var(--muted); text-align: center; }
+.book-done { display: grid; gap: 14px; }
+.book-done .sub { margin: 0; }
+.book-done .btn { width: 100%; }
+.summary { margin: 4px 0 6px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.summary div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 14px; border-top: 1px solid rgba(217, 172, 63, 0.14); }
+.summary div:first-child { border-top: 0; }
+.summary dt { color: var(--muted); }
+.summary dd { font-weight: 600; text-align: right; overflow-wrap: anywhere; }
+.nav-book-li { display: none; }
+
+/* gallery */
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.shot { padding: 0; border: 1px solid rgba(217, 172, 63, 0.16); border-radius: 8px; overflow: hidden; background: var(--panel); aspect-ratio: 4 / 5; cursor: zoom-in; }
+.shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease, filter .3s ease; }
+.shot:hover img { transform: scale(1.05); }
+.gallery-foot { text-align: center; margin-top: 26px; color: var(--muted); font-size: 15px; }
+
+/* ceo */
+.ceo { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.ceo-photo { position: relative; max-width: 420px; justify-self: center; width: 100%; }
+.ceo-photo::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid var(--gold); border-radius: 12px; }
+.ceo-photo img { position: relative; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 30%; border-radius: 12px; }
+.ceo-role { font: 600 13px/1 var(--f-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.ceo h2 { font-size: clamp(48px, 6.4vw, 78px); line-height: 0.95; }
+.ceo p { margin-top: 20px; max-width: 46ch; color: #d0ccc0; font-size: 17px; }
+.ceo .hero-actions { margin-top: 28px; }
+
+/* find us */
+.find { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 44px; align-items: start; }
+.find h2 { text-align: left; }
+.find-lead { margin-top: 12px; color: var(--muted); max-width: 44ch; }
+.info { margin-top: 28px; display: grid; gap: 18px; }
+.info-row { display: flex; gap: 14px; align-items: flex-start; }
+.info-row svg { width: 22px; height: 22px; flex: none; margin-top: 3px; stroke: var(--gold); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.info-row b { display: block; font: 600 13px/1 var(--f-body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.info-row span, .info-row a { overflow-wrap: anywhere; }
+.info-row a { text-decoration: none; }
+.info-row a:hover { color: var(--gold-hi); }
+.hours { width: 100%; max-width: 380px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.hours th, .hours td { padding: 8px 0; text-align: left; font-weight: 500; border-bottom: 1px solid rgba(217, 172, 63, 0.12); }
+.hours td { text-align: right; color: #d9d5c9; }
+.hours tr.is-today th, .hours tr.is-today td { color: var(--gold-hi); font-weight: 700; }
+.hours tr.is-off td { color: var(--shut); }
+.map-box { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
+.map-box iframe { display: block; width: 100%; height: 400px; border: 0; filter: invert(0.9) hue-rotate(180deg) brightness(0.95) contrast(0.92) saturate(0.55); }
+.map-card { min-height: 400px; display: grid; place-content: center; justify-items: center; gap: 14px; text-align: center; padding: 32px;
+  background: radial-gradient(ellipse at 50% 40%, rgba(217, 172, 63, 0.14), transparent 65%), repeating-linear-gradient(45deg, rgba(217, 172, 63, 0.04) 0 2px, transparent 2px 22px), var(--panel); }
+.map-card svg { width: 54px; height: 54px; stroke: var(--gold-hi); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.map-card h3 { font: 400 32px/1 var(--f-display); letter-spacing: 0.04em; }
+.map-card p { color: var(--muted); max-width: 30ch; }
+.map-actions { display: flex; flex-wrap: wrap; gap: 10px; padding: 14px; border-top: 1px solid rgba(217, 172, 63, 0.14); background: var(--panel-2); }
+.map-actions .btn { padding: 12px 18px; font-size: 13px; }
+
+/* footer */
+.site-footer { background: #06070c; border-top: 1px solid var(--line); padding-block: 56px 28px; }
+.foot { display: grid; grid-template-columns: 1.4fr 1fr 1.2fr 1.2fr; gap: 36px; }
+.foot .brand img { height: 64px; }
+.foot p { margin-top: 16px; color: var(--muted); font-size: 15px; max-width: 30ch; }
+.foot h3 { font: 400 22px/1 var(--f-display); letter-spacing: 0.08em; color: var(--gold-hi); margin-bottom: 14px; }
+.foot li + li { margin-top: 8px; }
+.foot a { text-decoration: none; color: #cfcbbf; }
+.foot a:hover { color: var(--gold-hi); }
+.foot li, .foot address { font-size: 15px; color: #cfcbbf; font-style: normal; overflow-wrap: anywhere; }
+.foot .off { color: var(--shut); }
+.legal { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(217, 172, 63, 0.12); color: #8a877c; font-size: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+.legal-end { display: flex; align-items: center; gap: 20px; }
+.to-top { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); color: var(--gold-hi); background: var(--panel); transition: background .2s ease, color .2s ease, transform .2s ease; }
+.to-top svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.to-top:hover { background: var(--grad-gold); color: #1a1405; transform: translateY(-3px); }
+.foot-contact li { display: flex; gap: 10px; align-items: flex-start; }
+.foot-contact svg { width: 18px; height: 18px; flex: none; margin-top: 3px; stroke: var(--gold); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* lightbox */
+.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: rgba(4, 5, 9, 0.94);
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lightbox img { max-height: 86vh; max-width: min(92vw, 760px); width: auto; border-radius: 8px; border: 1px solid var(--line); }
+.lb-btn { position: absolute; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: rgba(16, 18, 27, 0.85); color: var(--gold-hi); font-size: 24px; line-height: 1; cursor: pointer; }
+.lb-btn:hover { background: var(--panel-2); }
+.lb-close { top: max(16px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); }
+.lb-prev { left: max(10px, env(safe-area-inset-left, 0px)); top: 50%; transform: translateY(-50%); }
+.lb-next { right: max(10px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); }
+
+/* responsive */
+@media (max-width: 1000px) {
+  .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .why { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .foot { grid-template-columns: 1fr 1fr; }
+  .nav-links a { padding: 9px 11px; }
+}
+@media (max-width: 860px) {
+  .menu-btn { display: inline-flex; }
+  .nav-cta { display: none; }
+  .nav-links {
+    position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; gap: 4px;
+    padding: 12px max(16px, env(safe-area-inset-right, 0px)) 18px max(16px, env(safe-area-inset-left, 0px));
+    background: rgba(9, 10, 17, 0.98); border-bottom: 1px solid var(--line); display: none;
+  }
+  .site-header.nav-open .nav-links { display: flex; }
+  .nav-links a { padding: 14px 16px; border-radius: 8px; font-size: 14px; }
+  .hero { min-height: 700px; align-items: flex-end; }
+  .hero-media { width: 100%; -webkit-mask-image: none; mask-image: none; }
+  .hero-media video, .hero-media img { object-position: 50% 40%; }
+  .hero::after { background: linear-gradient(180deg, rgba(9, 10, 17, 0.5) 0, rgba(9, 10, 17, 0.28) 28%, rgba(9, 10, 17, 0.78) 62%, var(--ink) 96%); }
+  .hero-inner { padding-block: 120px 56px; }
+  .ceo, .find { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .ceo-photo { max-width: 340px; }
+  .price-grid { grid-template-columns: minmax(0, 1fr); }
+  .section { padding-block: 68px; }
+  .nav-book-li { display: block; }
+  .nav-links a.nav-book { background: var(--grad-gold); color: #1a1405; text-align: center; margin-top: 6px; }
+  .book-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .book { padding-block: 60px; }
+}
+@media (max-width: 560px) {
+  .brand img { height: 48px; }
+  .brand-name b { font-size: 17px; }
+  .brand-name small { font-size: 9px; letter-spacing: 0.34em; }
+  .services { gap: 12px; }
+  .service { aspect-ratio: 4 / 5; }
+  .service figcaption { padding: 56px 12px 14px; }
+  .service h3 { font-size: 24px; }
+  .service p { display: none; }
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .why { grid-template-columns: minmax(0, 1fr); }
+  .foot { grid-template-columns: minmax(0, 1fr); }
+  .price-card { padding: 24px 20px 18px; }
+  .num { font-size: 40px; }
+  .book-card { padding: 24px 18px; }
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-actions .btn, .book-actions .btn { flex: 1 1 100%; }
+  .map-box iframe, .map-card { height: 320px; min-height: 320px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+</style>
+
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="Majesty Barbershop, home">
+      <img src="assets/logo-mark.png" alt="" width="51" height="56">
+      <span class="brand-name"><b class="gold-text">MAJESTY</b><small>BARBERSHOP</small></span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" data-spy="home">Home</a></li>
+        <li><a href="#services" data-spy="services">Services</a></li>
+        <li><a href="#prices" data-spy="prices">Prices</a></li>
+        <li><a href="#gallery" data-spy="gallery">Gallery</a></li>
+        <li><a href="#contact" data-spy="contact">Contact</a></li>
+        <li class="nav-book-li"><a class="nav-book" href="#book">Book now</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--light nav-cta" href="#book">Book now</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu"><span></span></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-media" aria-hidden="true">
+    <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="status" id="status" data-state="unknown"><i></i><span id="statusText">Open daily except Tuesday</span></p>
+      <h1><span>Sharp fades.</span><span class="gold-text">Royal finish.</span></h1>
+      <p class="lede">Fades, hair designs and beard shaping for kids and adults.</p>
+      <div class="hero-actions">
+        <a class="btn btn--gold" href="https://wa.me/233592090240?text=Hello%20Majesty%20Barbershop%2C%20I%27d%20like%20to%20book%20a%20cut." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.3 18.7L4 20z"/><path d="M9 9.5c.3 2.6 2.4 4.7 5 5l1.2-1.3-1.9-1-.8.7a3.6 3.6 0 0 1-1.6-1.6l.7-.8-1-1.9L9 9.5z"/></svg>
+          Book on WhatsApp
+        </a>
+        <a class="btn btn--ghost" href="#services">View services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Our services</h2>
+      <p>Every cut is finished with clean edges. Pick a service, then book on WhatsApp or walk in.</p>
+    </div>
+    <div class="services">
+      <figure class="service"><img src="assets/cut-curly-taper.jpg" alt="Taper fade with natural curls on top" loading="lazy" width="900" height="1178"><figcaption><h3>Fades &amp; tapers</h3><p>Skin, low and mid fades, blended clean.</p></figcaption></figure>
+      <figure class="service"><img src="assets/cut-bolt.jpg" alt="Fade with a lightning bolt design cut into the side" loading="lazy" width="900" height="1157"><figcaption><h3>Hair designs</h3><p>Lines, bolts, crosses and custom art.</p></figcaption></figure>
+      <figure class="service"><img src="assets/cut-beard-fade.jpg" alt="Skin fade with a shaped full beard" loading="lazy" width="900" height="1183"><figcaption><h3>Beard trim &amp; shape</h3><p>Sharp edges and a full, even shape.</p></figcaption></figure>
+      <figure class="service"><img src="assets/cut-orange-curls.jpg" alt="Short cut with dyed copper curls on top" loading="lazy" width="900" height="1180"><figcaption><h3>Hair dye &amp; colour</h3><p>Copper and bold colour on short cuts.</p></figcaption></figure>
+      <figure class="service"><img src="assets/cut-cross-lineup.jpg" alt="Sharp line-up with a small cross design" loading="lazy" width="900" height="1200"><figcaption><h3>Line-ups</h3><p>A crisp hairline that frames the face.</p></figcaption></figure>
+      <figure class="service"><img src="assets/cut-ladies-lines.jpg" alt="Low cut with two sharp lines at the side" loading="lazy" width="900" height="1200" style="object-position:50% 36%"><figcaption><h3>Ladies' low cuts</h3><p>Close cuts with clean lines.</p></figcaption></figure>
+    </div>
+    <div class="starting">
+      <div>
+        <h3>Starting from GH₵ 20</h3>
+        <p>Clear prices for every service. No surprises at the chair.</p>
+      </div>
+      <a class="btn btn--light" href="#prices">View price list</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--band" id="prices">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Price list</h2>
+      <p>All prices are in Ghana cedis.</p>
+    </div>
+    <div class="price-grid">
+      <dl class="price-card">
+          <div class="price-row"><dt>Adult cut only</dt><dd><span class="cur">GH₵</span><span class="num">50</span></dd></div>
+          <div class="price-row"><dt>Adult cut + dye</dt><dd><span class="cur">GH₵</span><span class="num">70</span></dd></div>
+          <div class="price-row"><dt>Kids cut</dt><dd><span class="cur">GH₵</span><span class="num">30</span></dd></div>
+          <div class="price-row"><dt>Kids cut + dye</dt><dd><span class="cur">GH₵</span><span class="num">40</span></dd></div>
+          <div class="price-row"><dt>Cut + wave + dye</dt><dd><span class="cur">GH₵</span><span class="num">100</span></dd></div>
+          <div class="price-row"><dt>Cut + curl + colour dye</dt><dd><span class="cur">GH₵</span><span class="num">200</span></dd></div>
+          <div class="price-row"><dt>Shaping only</dt><dd><span class="cur">GH₵</span><span class="num">20</span></dd></div>
+      </dl>
+      <dl class="price-card">
+          <div class="price-row"><dt>Perm cut</dt><dd><span class="cur">GH₵</span><span class="num">150</span></dd></div>
+          <div class="price-row"><dt>Shape and dye</dt><dd><span class="cur">GH₵</span><span class="num">40</span></dd></div>
+          <div class="price-row"><dt>Black dye only</dt><dd><span class="cur">GH₵</span><span class="num">30</span></dd></div>
+          <div class="price-row"><dt>Sakora</dt><dd><span class="cur">GH₵</span><span class="num">30</span></dd></div>
+          <div class="price-row"><dt>Sporting waves (kids)</dt><dd><span class="cur">GH₵</span><span class="num">70</span></dd></div>
+          <div class="price-row"><dt>Sporting waves (adults)</dt><dd><span class="cur">GH₵</span><span class="num">100</span></dd></div>
+          <div class="price-row"><dt>Washing only</dt><dd><span class="cur">GH₵</span><span class="num">30</span></dd></div>
+      </dl>
+    </div>
+    <p class="price-note">Have a design in mind? Bring a photo or send it to us on WhatsApp.</p>
+  </div>
+</section>
+
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Why choose us</h2>
+      <p>A busy, friendly shop where the cut is the focus.</p>
+    </div>
+    <ul class="why">
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+        <h3>Open until 10 PM</h3><p>Six days a week, with late chairs after work and school.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6.5" r="2.5"/><circle cx="6" cy="17.5" r="2.5"/><path d="M8 8l12 9.5M8 16l12-9.5"/></svg>
+        <h3>Custom designs</h3><p>Lines, bolts, crosses and your own idea, cut with a steady hand.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.3"/><path d="M16 14.4A5 5 0 0 1 21 19.5"/></svg>
+        <h3>Kids and adults</h3><p>Cuts for the whole family, with kids from GH₵ 30.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+        <h3>Clean tools</h3><p>A UV sterilizer in the shop keeps tools clean between clients.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="book" id="book" aria-labelledby="bookTitle">
+  <div class="wrap book-grid">
+    <div class="book-copy">
+      <h2 id="bookTitle">Book your next cut</h2>
+      <p>Pick a day and time, add your name and number, then send it to the shop on WhatsApp.</p>
+      <div class="book-hours">
+        <div><b>Mon, Wed – Sat</b><span>9 AM – 10 PM</span></div>
+        <div><b>Sunday</b><span>11 AM – 10 PM</span></div>
+        <div><b>Tuesday</b><span>Closed</span></div>
+      </div>
+      <div class="book-actions">
+        <a class="btn btn--dark" href="https://wa.me/233592090240?text=Hello%20Majesty%20Barbershop%2C%20I%27d%20like%20to%20book%20a%20cut." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn btn--outline-dark" href="tel:+233592090240">Call +233 59 209 02 40</a>
+      </div>
+    </div>
+    <div class="book-card">
+      <form id="bookForm" novalidate>
+        <h3>Choose your slot</h3>
+        <p class="sub">Fields marked * are required.</p>
+        <div class="form-grid">
+          <div class="field" id="fDate">
+            <label for="bookDate">Date <span class="req">*</span></label>
+            <input type="date" id="bookDate" name="date" required aria-required="true" aria-describedby="errDate">
+            <p class="err" id="errDate" role="alert" hidden></p>
+          </div>
+          <div class="field" id="fTime">
+            <label for="bookTime">Time <span class="req">*</span></label>
+            <select id="bookTime" name="time" required aria-required="true" aria-describedby="errTime" disabled>
+              <option value="">Pick a date first</option>
+            </select>
+            <p class="err" id="errTime" role="alert" hidden></p>
+          </div>
+          <div class="field field--full" id="fName">
+            <label for="bookName">Your name <span class="req">*</span></label>
+            <input type="text" id="bookName" name="name" autocomplete="name" placeholder="Full name" required aria-required="true" aria-describedby="errName">
+            <p class="err" id="errName" role="alert" hidden></p>
+          </div>
+          <div class="field field--full" id="fPhone">
+            <label for="bookPhone">Phone number <span class="req">*</span></label>
+            <input type="tel" id="bookPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="0XX XXX XXXX" required aria-required="true" aria-describedby="errPhone">
+            <p class="err" id="errPhone" role="alert" hidden></p>
+          </div>
+          <div class="field field--full" id="fService">
+            <label for="bookService">Service <span class="opt">optional</span></label>
+            <select id="bookService" name="service">
+              <option value="">Not sure yet</option>
+              <option>Adult cut only (GH₵ 50)</option>
+              <option>Adult cut + dye (GH₵ 70)</option>
+              <option>Kids cut (GH₵ 30)</option>
+              <option>Kids cut + dye (GH₵ 40)</option>
+              <option>Cut + wave + dye (GH₵ 100)</option>
+              <option>Cut + curl + colour dye (GH₵ 200)</option>
+              <option>Shaping only (GH₵ 20)</option>
+              <option>Perm cut (GH₵ 150)</option>
+              <option>Shape and dye (GH₵ 40)</option>
+              <option>Black dye only (GH₵ 30)</option>
+              <option>Sakora (GH₵ 30)</option>
+              <option>Sporting waves (kids) (GH₵ 70)</option>
+              <option>Sporting waves (adults) (GH₵ 100)</option>
+              <option>Washing only (GH₵ 30)</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn--gold" type="submit">Request booking</button>
+        <p class="form-note">Times shown are our opening hours in Ghana. Tuesday is closed.</p>
+      </form>
+      <div class="book-done" id="bookDone" hidden>
+        <h3>Almost done</h3>
+        <p class="sub">Send this on WhatsApp so the shop gets your request. Your slot is confirmed once the shop replies.</p>
+        <dl class="summary" id="summary"></dl>
+        <a class="btn btn--gold" id="waSend" href="https://wa.me/233592090240?text=Hello%20Majesty%20Barbershop%2C%20I%27d%20like%20to%20book%20a%20cut." target="_blank" rel="noopener">Send on WhatsApp</a>
+        <button class="btn btn--ghost" type="button" id="bookEdit">Change details</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Latest cuts</h2>
+      <p>Fresh work from the chairs at Majesty. Tap a photo to see it larger.</p>
+    </div>
+    <div class="gallery" id="gallery-grid">
+      <button class="shot" type="button"><img src="assets/cut-ring-lines.jpg" alt="Fade with sharp curved lines cut into the side, lit by a ring light" loading="lazy" width="900" height="1157"></button>
+      <button class="shot" type="button"><img src="assets/cut-cross-wings.jpg" alt="Back of the head with a cross and wings design shaved in" loading="lazy" width="900" height="1167"></button>
+      <button class="shot" type="button"><img src="assets/cut-bolt.jpg" alt="Fade with a lightning bolt design on the side" loading="lazy" width="900" height="1157"></button>
+      <button class="shot" type="button"><img src="assets/cut-back-design.jpg" alt="Fade with a looped line design at the back of the head" loading="lazy" width="900" height="1169"></button>
+      <button class="shot" type="button"><img src="assets/cut-infinity-beard.jpg" alt="Fade with an infinity-style line design and a shaped beard" loading="lazy" width="900" height="1162"></button>
+      <button class="shot" type="button"><img src="assets/cut-curls-three.jpg" alt="Taper with curls on top and a number three design" loading="lazy" width="900" height="1200"></button>
+      <button class="shot" type="button"><img src="assets/cut-beard-fade.jpg" alt="Skin fade with a sharp line-up and a full shaped beard" loading="lazy" width="900" height="1183"></button>
+      <button class="shot" type="button"><img src="assets/cut-infinity-lines.jpg" alt="Fade with a flowing line design on the side" loading="lazy" width="900" height="1200"></button>
+      <button class="shot" type="button"><img src="assets/cut-curly-taper.jpg" alt="Taper fade with natural curls on top" loading="lazy" width="900" height="1178"></button>
+      <button class="shot" type="button"><img src="assets/cut-cross-lineup.jpg" alt="Sharp line-up with a small cross design" loading="lazy" width="900" height="1200"></button>
+      <button class="shot" type="button"><img src="assets/cut-orange-curls.jpg" alt="Short cut with dyed copper curls and a zigzag line design" loading="lazy" width="900" height="1180"></button>
+      <button class="shot" type="button"><img src="assets/cut-ladies-lines.jpg" alt="Low cut with two sharp lines at the side" loading="lazy" width="900" height="1200"></button>
+    </div>
+  </div>
+</section>
+
+<section class="section section--band" id="ceo">
+  <div class="wrap ceo">
+    <div class="ceo-photo"><img src="assets/gerald-tetteh.jpg" alt="Gerald Tetteh, CEO of Majesty Barbershop, seated in a barber chair in the shop" loading="lazy" width="900" height="1200"></div>
+    <div>
+      <p class="ceo-role">CEO, Majesty Barbershop</p>
+      <h2>Gerald <span class="gold-text">Tetteh</span></h2>
+      <p>At Majesty Barbershop, I'm passionate about delivering exceptional grooming experiences, precision haircuts, and confidence-boosting styles. My goal is simple: every client deserves to look sharp, feel confident, and leave satisfied.</p>
+      <div class="hero-actions">
+        <a class="btn btn--gold" href="https://wa.me/233592090240?text=Hello%20Majesty%20Barbershop%2C%20I%27d%20like%20to%20book%20a%20cut." target="_blank" rel="noopener">Message the shop</a>
+        <a class="btn btn--ghost" href="#contact">Find the shop</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap find">
+    <div>
+      <h2>Find us</h2>
+      <p class="find-lead">On Amanfrom Road in Ngleshi Amanfro. Walk in, relax, and leave sharp.</p>
+      <div class="info">
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <div><b>Address</b><span>Majesty Barbershop, Amanfrom Road,<br>Ngleshi Amanfro, Ghana</span></div>
+        </div>
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg>
+          <div><b>Phone and WhatsApp</b><a href="tel:+233592090240">+233 59 209 02 40</a></div>
+        </div>
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <div><b>Email</b><a href="mailto:tettehgerrad90@gmail.com">tettehgerrad90@gmail.com</a></div>
+        </div>
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+          <div>
+            <b>Opening hours</b>
+            <table class="hours">
+              <tbody>
+                <tr data-day="1"><th scope="row">Monday</th><td>9:00 AM – 10:00 PM</td></tr>
+                <tr data-day="2" class="is-off"><th scope="row">Tuesday</th><td>Closed</td></tr>
+                <tr data-day="3"><th scope="row">Wednesday</th><td>9:00 AM – 10:00 PM</td></tr>
+                <tr data-day="4"><th scope="row">Thursday</th><td>9:00 AM – 10:00 PM</td></tr>
+                <tr data-day="5"><th scope="row">Friday</th><td>9:00 AM – 10:00 PM</td></tr>
+                <tr data-day="6"><th scope="row">Saturday</th><td>9:00 AM – 10:00 PM</td></tr>
+                <tr data-day="0"><th scope="row">Sunday</th><td>11:00 AM – 10:00 PM</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-box">
+      <iframe title="Map showing Majesty Barbershop, Amanfrom Road, Ngleshi Amanfro" src="https://www.google.com/maps?q=Majesty%20Barbershop%2C%20Amanfrom%20Road%2C%20Ngleshi%20Amanfro%2C%20Ghana&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <div class="map-actions">
+        <a class="btn btn--gold" href="https://www.google.com/maps/dir/?api=1&destination=Majesty%20Barbershop%2C%20Amanfrom%20Road%2C%20Ngleshi%20Amanfro%2C%20Ghana" target="_blank" rel="noopener">Get directions</a>
+        <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&query=Majesty%20Barbershop%2C%20Amanfrom%20Road%2C%20Ngleshi%20Amanfro%2C%20Ghana" target="_blank" rel="noopener">Open in Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#home" aria-label="Majesty Barbershop, back to top">
+          <img src="assets/logo-mark.png" alt="" width="58" height="64">
+          <span class="brand-name"><b class="gold-text">MAJESTY</b><small>BARBERSHOP</small></span>
+        </a>
+        <p>Sharp fades and a royal finish, for kids and adults.</p>
+      </div>
+      <div>
+        <h3>Quick links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#prices">Price list</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul class="foot-contact">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><address>Amanfrom Road,<br>Ngleshi Amanfro, Ghana</address></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg><a href="tel:+233592090240">+233 59 209 02 40</a></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:tettehgerrad90@gmail.com">tettehgerrad90@gmail.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Hours</h3>
+        <ul>
+          <li>Mon, Wed – Sat: 9 AM – 10 PM</li>
+          <li>Sunday: 11 AM – 10 PM</li>
+          <li class="off">Tuesday: Closed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Majesty Barbershop. All rights reserved.</span>
+      <div class="legal-end">
+        <span>Developed by The Consultant</span>
+        <a class="to-top" href="#top" aria-label="Back to top">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M6 11.5l6-6 6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb-btn lb-close" type="button" id="lbClose" aria-label="Close photo">×</button>
+  <button class="lb-btn lb-prev" type="button" id="lbPrev" aria-label="Previous photo">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next" type="button" id="lbNext" aria-label="Next photo">›</button>
+</div>
+
+<script>
+(function () {
+  // Menu
+  var header = document.querySelector('.site-header');
+  var menuBtn = document.getElementById('menuBtn');
+  function setMenu(open) {
+    header.classList.toggle('nav-open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  menuBtn.addEventListener('click', function () { setMenu(!header.classList.contains('nav-open')); });
+  document.querySelectorAll('.nav-links a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+
+  // Hero video: respect reduced motion, tolerate blocked autoplay
+  var vid = document.getElementById('heroVideo');
+  if (vid) {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { vid.removeAttribute('autoplay'); vid.pause(); }
+    else { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+  }
+
+  // Opening hours in Ghana time (Africa/Accra)
+  var HOURS = { 0: [11, 22], 1: [9, 22], 2: null, 3: [9, 22], 4: [9, 22], 5: [9, 22], 6: [9, 22] };
+  var NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  function fmt(h) { var x = h % 12 || 12; return x + (h < 12 ? ' AM' : ' PM'); }
+  function accraNow() {
+    var parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Africa/Accra', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
+    var o = {}; parts.forEach(function (p) { o[p.type] = p.value; });
+    var day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(o.weekday);
+    return { day: day, mins: (parseInt(o.hour, 10) % 24) * 60 + parseInt(o.minute, 10) };
+  }
+  function nextOpen(day) {
+    for (var i = 1; i <= 7; i++) {
+      var d = (day + i) % 7;
+      if (HOURS[d]) return { day: d, offset: i, at: HOURS[d][0] };
+    }
+    return null;
+  }
+  try {
+    var now = accraNow();
+    var today = HOURS[now.day];
+    var el = document.getElementById('status');
+    var txt = document.getElementById('statusText');
+    var state, msg;
+    if (today && now.mins >= today[0] * 60 && now.mins < today[1] * 60) {
+      state = 'open'; msg = 'Open now, until ' + fmt(today[1]);
+    } else if (today && now.mins < today[0] * 60) {
+      state = 'closed'; msg = 'Closed now, opens today at ' + fmt(today[0]);
+    } else {
+      var n = nextOpen(now.day);
+      state = 'closed';
+      msg = (now.day === 2 ? 'Closed today' : 'Closed now') + ', opens ' + (n.offset === 1 ? 'tomorrow' : NAMES[n.day]) + ' at ' + fmt(n.at);
+    }
+    el.setAttribute('data-state', state); txt.textContent = msg;
+    var row = document.querySelector('.hours tr[data-day="' + now.day + '"]');
+    if (row) row.classList.add('is-today');
+  } catch (e) { /* keep the static text */ }
+
+  // Nav highlight
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[data-spy]'));
+  var targets = links.map(function (a) { return document.getElementById(a.getAttribute('data-spy')); });
+  function spy() {
+    var y = window.scrollY + 140, idx = 0;
+    targets.forEach(function (t, i) { if (t && t.offsetTop <= y) idx = i; });
+    links.forEach(function (a, i) { a.classList.toggle('is-active', i === idx); });
+  }
+  window.addEventListener('scroll', spy, { passive: true }); window.addEventListener('resize', spy); spy();
+
+  // Lightbox
+  var shots = Array.prototype.slice.call(document.querySelectorAll('#gallery-grid .shot img'));
+  var lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg'), cur = 0, lastFocus = null;
+  function show(i) { cur = (i + shots.length) % shots.length; lbImg.src = shots[cur].src; lbImg.alt = shots[cur].alt; }
+  function openLb(i) { lastFocus = document.activeElement; show(i); lb.hidden = false; document.getElementById('lbClose').focus(); }
+  function closeLb() { lb.hidden = true; lbImg.src = ''; if (lastFocus) lastFocus.focus(); }
+  shots.forEach(function (img, i) { img.parentNode.addEventListener('click', function () { openLb(i); }); });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', function () { show(cur - 1); });
+  document.getElementById('lbNext').addEventListener('click', function () { show(cur + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
+
+  // Booking form
+  var form = document.getElementById('bookForm');
+  if (form) {
+    var dateIn = document.getElementById('bookDate'), timeSel = document.getElementById('bookTime'),
+        nameIn = document.getElementById('bookName'), phoneIn = document.getElementById('bookPhone'),
+        svcSel = document.getElementById('bookService'), done = document.getElementById('bookDone');
+    var WA_NUMBER = '233592090240';
+    function todayAccra() {
+      return new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Accra', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+    }
+    function dowOf(s) { return new Date(s + 'T12:00:00Z').getUTCDay(); }
+    function slotLabel(h) { return (h % 12 || 12) + ':00 ' + (h < 12 ? 'AM' : 'PM'); }
+    function longDate(s) {
+      return new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(s + 'T12:00:00Z'));
+    }
+    var t0 = todayAccra();
+    dateIn.min = t0;
+    var far = new Date(t0 + 'T12:00:00Z'); far.setUTCDate(far.getUTCDate() + 90);
+    dateIn.max = far.toISOString().slice(0, 10);
+
+    function setErr(fieldId, errId, msg) {
+      var wrap = document.getElementById(fieldId), err = document.getElementById(errId);
+      var ctl = wrap.querySelector('input,select');
+      wrap.classList.toggle('has-error', !!msg);
+      err.textContent = msg || ''; err.hidden = !msg;
+      ctl.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    }
+    function dateMsg() {
+      var v = dateIn.value;
+      if (!v) return 'Choose a date.';
+      if (v < t0) return 'Pick today or a later date.';
+      if (v > dateIn.max) return 'Pick a date within the next 90 days.';
+      if (!HOURS[dowOf(v)]) return 'We are closed on Tuesdays. Please pick another day.';
+      return '';
+    }
+    function timeMsg() {
+      if (timeSel.value) return '';
+      return (dateIn.value && HOURS[dowOf(dateIn.value)]) ? 'Choose a time.' : 'Pick an open date first.';
+    }
+    function nameMsg() { return nameIn.value.trim().length >= 2 ? '' : 'Enter your name.'; }
+    function phoneMsg() {
+      var raw = phoneIn.value.trim(), digits = raw.replace(/\D/g, '');
+      if (!raw) return 'Enter your phone number.';
+      if (!/^[+0-9()\s-]+$/.test(raw) || digits.length < 9 || digits.length > 15) return 'Enter a valid phone number, for example 024 123 4567.';
+      return '';
+    }
+    function buildTimes() {
+      var prev = timeSel.value;
+      timeSel.innerHTML = '';
+      function opt(v, t, dis) { var o = document.createElement('option'); o.value = v; o.textContent = t; if (dis) o.disabled = true; timeSel.appendChild(o); }
+      var v = dateIn.value;
+      if (!v) { opt('', 'Pick a date first'); timeSel.disabled = true; return; }
+      var h = HOURS[dowOf(v)];
+      if (!h) { opt('', 'Closed on Tuesdays'); timeSel.disabled = true; return; }
+      timeSel.disabled = false; opt('', 'Choose a time');
+      var nowMins = accraNow().mins, isToday = (v === todayAccra()), any = false;
+      for (var hr = h[0]; hr <= h[1]; hr++) {
+        var past = isToday && hr * 60 <= nowMins;
+        opt(slotLabel(hr), slotLabel(hr) + (past ? ' (passed)' : ''), past);
+        if (!past) any = true;
+      }
+      if (prev) { timeSel.value = prev; if (timeSel.selectedOptions[0] && timeSel.selectedOptions[0].disabled) timeSel.value = ''; }
+      if (!any) setErr('fTime', 'errTime', 'No slots left today. Please pick another day.');
+    }
+    dateIn.addEventListener('change', function () {
+      buildTimes();
+      setErr('fDate', 'errDate', dateMsg());
+      if (timeSel.disabled || timeSel.value) setErr('fTime', 'errTime', '');
+    });
+    timeSel.addEventListener('change', function () { setErr('fTime', 'errTime', timeMsg()); });
+    nameIn.addEventListener('blur', function () { if (nameIn.value) setErr('fName', 'errName', nameMsg()); });
+    phoneIn.addEventListener('blur', function () { if (phoneIn.value) setErr('fPhone', 'errPhone', phoneMsg()); });
+    nameIn.addEventListener('input', function () { if (nameIn.value.trim().length >= 2) setErr('fName', 'errName', ''); });
+    phoneIn.addEventListener('input', function () { if (!phoneMsg()) setErr('fPhone', 'errPhone', ''); });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var checks = [['fDate', 'errDate', dateMsg, dateIn], ['fTime', 'errTime', timeMsg, timeSel], ['fName', 'errName', nameMsg, nameIn], ['fPhone', 'errPhone', phoneMsg, phoneIn]];
+      var first = null;
+      checks.forEach(function (c) { var m = c[2](); setErr(c[0], c[1], m); if (m && !first) first = c[3]; });
+      if (first) { first.focus(); return; }
+      var rows = [['Date', longDate(dateIn.value)], ['Time', timeSel.value], ['Name', nameIn.value.trim()], ['Phone', phoneIn.value.trim()]];
+      if (svcSel.value) rows.push(['Service', svcSel.value]);
+      var sum = document.getElementById('summary'); sum.innerHTML = '';
+      rows.forEach(function (r) {
+        var d = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
+        dt.textContent = r[0]; dd.textContent = r[1]; d.appendChild(dt); d.appendChild(dd); sum.appendChild(d);
+      });
+      var msg = 'Hello Majesty Barbershop, I would like to book a cut.\n' + rows.map(function (r) { return r[0] + ': ' + r[1]; }).join('\n');
+      document.getElementById('waSend').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+      form.hidden = true; done.hidden = false;
+      document.getElementById('waSend').focus();
+    });
+    document.getElementById('bookEdit').addEventListener('click', function () { done.hidden = true; form.hidden = false; dateIn.focus(); });
+  }
+  // Back to top
+  var toTop = document.querySelector('.to-top');
+  if (toTop) toTop.addEventListener('click', function (e) {
+    e.preventDefault();
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+})();
+</script>
+
+</body>
+</html>
